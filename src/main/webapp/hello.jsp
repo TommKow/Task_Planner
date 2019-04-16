@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tomasz
@@ -12,5 +13,9 @@
 </head>
 <body>
         <p>HELLO !!!!!!!!</p>
+        <c:forEach items="${userDto}" var="user">
+            ${user.username}
+        </c:forEach>
+            ${userDto.username}
 </body>
 </html>
