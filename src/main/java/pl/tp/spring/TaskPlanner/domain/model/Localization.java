@@ -17,8 +17,8 @@ public class Localization {
     @Column(name = "account")
     private long account;
     @ManyToOne
-    @JoinColumn(name = "job_id")
-    private Job job;
+    @JoinColumn(name = "job_planner_id")
+    private JobPlanner jobPlanner;
 
     public Localization() {
     }
@@ -55,12 +55,12 @@ public class Localization {
         return this;
     }
 
-    public Job getJob() {
-        return job;
+    public JobPlanner getJobPlanner() {
+        return jobPlanner;
     }
 
-    public Localization setJob(Job job) {
-        this.job = job;
+    public Localization setJobPlanner(JobPlanner jobPlanner) {
+        this.jobPlanner = jobPlanner;
         return this;
     }
 
@@ -85,7 +85,8 @@ public class Localization {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", account=" + account +
-                ", job=" + job +
+                ", jobPlanner=" + jobPlanner +
                 '}';
     }
 }
+

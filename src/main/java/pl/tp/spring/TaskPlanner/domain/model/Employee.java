@@ -20,17 +20,23 @@ public class Employee {
     private String lastName;
     @Column(name = "address")
     private String address;
+    @Column(name = "phoneNr")
+    private long phoneNumber;
+    @Column(name = "salaryPm")
+    private double salaryPm;
     @ManyToOne
-    @JoinColumn(name = "job_id")
-    private Job job;
+    @JoinColumn(name = "job_planner_id")
+    private JobPlanner jobPlanner;
 
     public Employee() {
     }
 
-    public Employee(@NotNull String firstName, @NotNull String lastName, String address) {
+    public Employee(@NotNull String firstName, @NotNull String lastName, String address, long phoneNumber, double salaryPm) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.salaryPm = salaryPm;
     }
 
     public long getId() {
@@ -69,12 +75,30 @@ public class Employee {
         return this;
     }
 
-    public Job getJob() {
-        return job;
+    public long getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public Employee setJob(Job job) {
-        this.job = job;
+    public Employee setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public double getSalaryPm() {
+        return salaryPm;
+    }
+
+    public Employee setSalaryPm(double salaryPm) {
+        this.salaryPm = salaryPm;
+        return this;
+    }
+
+    public JobPlanner getJobPlanner() {
+        return jobPlanner;
+    }
+
+    public Employee setJobPlanner(JobPlanner jobPlanner) {
+        this.jobPlanner = jobPlanner;
         return this;
     }
 
@@ -100,7 +124,8 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
-                ", job=" + job +
+                ", jobPlanner=" + jobPlanner +
                 '}';
     }
 }
+

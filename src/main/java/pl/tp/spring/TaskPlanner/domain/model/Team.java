@@ -2,6 +2,8 @@ package pl.tp.spring.TaskPlanner.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +16,8 @@ public class Team {
     @NotNull
     @Column(name = "name")
     private String name;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Job> jobs = new ArrayList<>();
 
     public Team() {
     }

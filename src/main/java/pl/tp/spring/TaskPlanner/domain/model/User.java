@@ -3,6 +3,8 @@ package pl.tp.spring.TaskPlanner.domain.model;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +19,8 @@ public class User extends AbstractEntity {
     private String username;
     @Column(nullable = false)
     private String password;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Job> jobs = new ArrayList<>();
 
     public User() {
     }
