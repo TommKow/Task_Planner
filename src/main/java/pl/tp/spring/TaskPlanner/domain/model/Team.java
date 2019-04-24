@@ -17,7 +17,7 @@ public class Team {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Job> jobs = new ArrayList<>();
+    private List<JobPlanner> jobPlanners = new ArrayList<>();
 
     public Team() {
     }
@@ -41,6 +41,15 @@ public class Team {
 
     public Team setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public List<JobPlanner> getJobPlanners() {
+        return jobPlanners;
+    }
+
+    public Team setJobPlanners(List<JobPlanner> jobPlanners) {
+        this.jobPlanners = jobPlanners;
         return this;
     }
 

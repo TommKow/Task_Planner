@@ -20,7 +20,7 @@ public class User extends AbstractEntity {
     @Column(nullable = false)
     private String password;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Job> jobs = new ArrayList<>();
+    private List<JobPlanner> jobPlanners = new ArrayList<>();
 
     public User() {
     }
@@ -64,6 +64,15 @@ public class User extends AbstractEntity {
         this.password = password;
     }
 
+    public List<JobPlanner> getJobPlanners() {
+        return jobPlanners;
+    }
+
+    public User setJobPlanners(List<JobPlanner> jobPlanners) {
+        this.jobPlanners = jobPlanners;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,6 +94,7 @@ public class User extends AbstractEntity {
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", jobPlanners=" + jobPlanners +
                 "} " + super.toString();
     }
 }

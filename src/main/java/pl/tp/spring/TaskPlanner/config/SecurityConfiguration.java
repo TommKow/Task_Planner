@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import javax.sql.DataSource;
 
 @Configuration
+
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private DataSource dataSource;
@@ -46,18 +48,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers("/hello.jsp").authenticated()
-//                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
 //                .antMatchers("/register").anonymous()
-//                .antMatchers("/register").permitAll()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/anonymous").anonymous()
+//                .antMatchers("/login*").permitAll()
                 .anyRequest().permitAll()
                 .and()
-                .formLogin()
-                .defaultSuccessUrl("/hello.jsp")
+
+             .formLogin()
+                .loginPage("/login.jsp")
+                .loginProcessingUrl("/login")
+//                .defaultSuccessUrl("/hello.jsp")
+//                .failureUrl("/login.jsp?error=true")
                 .and()
-                .logout()
+
+             .logout()
+                .logoutSuccessUrl("/index.html")
                 .and()
-                .rememberMe()
-                .key("strasznieTajnyKlucz").tokenValiditySeconds(30*24*60*60);
+             .csrf()
+                .disable();
+
     }
 }

@@ -1,6 +1,8 @@
 package pl.tp.spring.TaskPlanner.domain.model;
 
 import org.apache.tomcat.util.digester.ArrayStack;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,15 +26,18 @@ public class JobPlanner {
     @Column(name = "work_quantity")
     private double workQuantity;
     @OneToMany(mappedBy = "jobPlanner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Employee> employees = new ArrayList<>();
     @OneToMany(mappedBy = "jobPlanner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Job> jobs = new ArrayList<>();
     @OneToMany(mappedBy = "jobPlanner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Localization> localizations = new ArrayList<>();
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
 

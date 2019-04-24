@@ -2,9 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>jobsplanner</title>
 </head>
 <body>
-$END$
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+        <div class="jobscontainer">
+            <div class="row" style="collapse: 2">
+                <div class="col-1"></div>
+                <div class="col-1" style="text-align: center"><h2>Jobs Planner</h2></div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>TEAM</th>
+        <th>DATE</th>
+        <th>EMPLOYEES</th>
+        <th>LOCALIZATION</th>
+        <th>DESCRIPTION</th>
+        <th>JOB</th>
+        <th>WORK QUANTITY</th>
+        <th>UPDATE</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>E</td>
+        <td>12.04.2019</td>
+        <td>employee1, employee2, employee3</td>
+        <td>xxx LECIA 54/7</td>
+        <td>Brak prądu na klatce</td>
+        <td>Instalacja i urządzenia elektryczne</td>
+        <td>5.25</td>
+        <td>14.04.2019</td>
+        <td><input type="submit" value="GENERUJ ZLECENIE"></td>
+        <td><input type="submit" value="UPDATE"></td>
+    </tr>
+</table>
 </body>
 </html>
