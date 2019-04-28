@@ -58,10 +58,9 @@ public class EmployeeController {
         employeeService.editEmployee(id, employeeDto);
         return "redirect:/employee/all";
     }
-    @GetMapping("/delete")
-    public String deleteEmployee(@PathVariable("id") Long id, @ModelAttribute Employee employee) {
-        employee = employeeRepository.getOne(id);
-        employeeRepository.delete(employee);
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable("id") Long id, @ModelAttribute EmployeeDto employeeDto) {
+        employeeService.deleteEmployee(id, employeeDto);
         return "redirect:/employee/all";
     }
 

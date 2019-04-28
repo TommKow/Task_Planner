@@ -28,5 +28,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.save(employeeToEdit);
     }
 
+    @Override
+    public void deleteEmployee(Long id, EmployeeDto employeeDto) {
+        Employee employeeDB = employeeRepository.getOne(id);
+        Employee employeeToDelete = ConverterFactory.convertToEmployeeDto(employeeDB, employeeDto);
+        employeeRepository.delete(employeeToDelete);
+    }
+
 
 }

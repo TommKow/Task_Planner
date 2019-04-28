@@ -27,9 +27,10 @@ public class Job {
     public Job() {
     }
 
-    public Job(@NotNull String name, @NotNull Long account) {
+    public Job(@NotNull String name, @NotNull Long account, double workQuantity) {
         this.name = name;
         this.account = account;
+        this.workQuantity = workQuantity;
     }
 
     public long getId() {
@@ -65,6 +66,24 @@ public class Job {
 
     public Job setJobPlanner(JobPlanner jobPlanner) {
         this.jobPlanner = jobPlanner;
+        return this;
+    }
+
+    public double getWorkQuantity() {
+        return workQuantity;
+    }
+
+    public Job setWorkQuantity(double workQuantity) {
+        this.workQuantity = workQuantity;
+        return this;
+    }
+
+    public List<Localization> getLocalizations() {
+        return localizations;
+    }
+
+    public Job setLocalizations(List<Localization> localizations) {
+        this.localizations = localizations;
         return this;
     }
 }

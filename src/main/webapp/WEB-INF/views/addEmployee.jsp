@@ -25,6 +25,7 @@
                 <form:label path="firstName" class="col-sm-3 col-form-label">Name</form:label>
                 <div class="col-sm-6">
                     <form:input path="firstName" class="form-control"  placeholder="First Name"/>
+                    <form:errors path="*" cssClass="error"/>
                 </div>
             </div>
             <div class="form-group row">

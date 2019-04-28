@@ -1,9 +1,11 @@
 package pl.tp.spring.TaskPlanner.services.converters;
 
 import pl.tp.spring.TaskPlanner.domain.model.Employee;
+import pl.tp.spring.TaskPlanner.domain.model.Team;
 import pl.tp.spring.TaskPlanner.domain.model.User;
 import pl.tp.spring.TaskPlanner.dto.EmployeeDto;
 import pl.tp.spring.TaskPlanner.dto.RegistrationFormDto;
+import pl.tp.spring.TaskPlanner.dto.TeamDto;
 import pl.tp.spring.TaskPlanner.dto.UserDto;
 
 public class ConverterFactory {
@@ -39,5 +41,14 @@ public class ConverterFactory {
         employeeBase.setPhoneNumber(employeeDto.getPhoneNumber());
         employeeBase.setSalaryPm(employeeDto.getSalaryPm());
         return employeeBase;
+    }
+    public static Team convertTeamDto(TeamDto teamDto) {
+        Team team = new Team();
+        team.setName(teamDto.getName());
+        return team;
+    }
+    public static Team convertToTeamDto(Team teamDB, TeamDto teamDto) {
+        teamDB.setName(teamDto.getName());
+        return teamDB;
     }
 }
