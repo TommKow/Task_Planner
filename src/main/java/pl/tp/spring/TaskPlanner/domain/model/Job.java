@@ -2,6 +2,7 @@ package pl.tp.spring.TaskPlanner.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "jobs")
@@ -15,9 +16,13 @@ public class Job {
     @NotNull
     @Column(name = "account")
     private Long account;
+    @Column(name = "work_quantity")
+    private double workQuantity;
     @ManyToOne
     @JoinColumn(name = "job_planner_id")
     private JobPlanner jobPlanner;
+    @ManyToMany
+    private List<Localization> localizations;
 
     public Job() {
     }

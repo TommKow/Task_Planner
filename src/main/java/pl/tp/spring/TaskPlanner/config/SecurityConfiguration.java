@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+            return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Override
@@ -56,14 +56,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
 
              .formLogin()
-                .loginPage("/login.jsp")
-                .loginProcessingUrl("/login")
+                .loginPage("/login")
+                .defaultSuccessUrl("/employee/all")
 //                .defaultSuccessUrl("/hello.jsp")
 //                .failureUrl("/login.jsp?error=true")
                 .and()
 
              .logout()
-                .logoutSuccessUrl("/index.html")
+                .logoutSuccessUrl("/login")
                 .and()
              .csrf()
                 .disable();

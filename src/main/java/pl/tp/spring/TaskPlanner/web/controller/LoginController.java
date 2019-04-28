@@ -20,18 +20,9 @@ public class LoginController {
     public LoginController(LoggedUser loggedUser) {
         this.loggedUser = loggedUser;
     }
-
     @GetMapping
     public String loginUser(Model model) {
         //model.addAttribute("userDto", new UserDto());
         return "login";
-    }
-    @PostMapping
-    public String loginUser(@ModelAttribute @Valid UserDto userDto, BindingResult result) {
-        if(result.hasErrors()) {
-            return "login";
-        }
-        loggedUser.value();
-        return "redirect:/hello.jsp";
     }
 }

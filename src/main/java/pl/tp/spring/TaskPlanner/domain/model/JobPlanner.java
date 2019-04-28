@@ -23,16 +23,11 @@ public class JobPlanner {
     private LocalDateTime created = LocalDateTime.now();
     @Column(name = "updated")
     private LocalDateTime updated;
-    @Column(name = "work_quantity")
-    private double workQuantity;
-    @OneToMany(mappedBy = "jobPlanner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany(mappedBy = "jobPlanner", fetch = FetchType.LAZY)
     private List<Employee> employees = new ArrayList<>();
-    @OneToMany(mappedBy = "jobPlanner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "jobPlanner", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Job> jobs = new ArrayList<>();
-    @OneToMany(mappedBy = "jobPlanner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany(mappedBy = "jobPlanner", fetch = FetchType.LAZY)
     private List<Localization> localizations = new ArrayList<>();
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -77,15 +72,6 @@ public class JobPlanner {
 
     public JobPlanner setUpdated(LocalDateTime updated) {
         this.updated = updated;
-        return this;
-    }
-
-    public double getWorkQuantity() {
-        return workQuantity;
-    }
-
-    public JobPlanner setWorkQuantity(double workQuantity) {
-        this.workQuantity = workQuantity;
         return this;
     }
 
@@ -141,12 +127,7 @@ public class JobPlanner {
                 ", description='" + description + '\'' +
                 ", created=" + created +
                 ", updated=" + updated +
-                ", workQuantity=" + workQuantity +
-                ", employees=" + employees +
-                ", jobs=" + jobs +
-                ", localizations=" + localizations +
-                ", user=" + user +
-                ", team=" + team +
                 '}';
     }
 }
+

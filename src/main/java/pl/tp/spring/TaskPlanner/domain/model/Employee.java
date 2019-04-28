@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,26 +12,22 @@ import java.util.Objects;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @NotNull
     @Column(name = "first_name")
     private String firstName;
     @NotNull
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "address")
     private String address;
     @Column(name = "phoneNr")
-    private long phoneNumber;
-    @Column(name = "salaryPm")
-    private double salaryPm;
-    @ManyToOne
-    @JoinColumn(name = "job_planner_id")
-    private JobPlanner jobPlanner;
+    private Long phoneNumber;
+    private Double salaryPm;
+    @ManyToMany
+    private List<JobPlanner> jobPlanner;
 
     public Employee() {
     }
-
     public Employee(@NotNull String firstName, @NotNull String lastName, String address, long phoneNumber, double salaryPm) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,11 +36,11 @@ public class Employee {
         this.salaryPm = salaryPm;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Employee setId(long id) {
+    public Employee setId(Long id) {
         this.id = id;
         return this;
     }
@@ -75,29 +72,29 @@ public class Employee {
         return this;
     }
 
-    public long getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public Employee setPhoneNumber(long phoneNumber) {
+    public Employee setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
 
-    public double getSalaryPm() {
+    public Double getSalaryPm() {
         return salaryPm;
     }
 
-    public Employee setSalaryPm(double salaryPm) {
+    public Employee setSalaryPm(Double salaryPm) {
         this.salaryPm = salaryPm;
         return this;
     }
 
-    public JobPlanner getJobPlanner() {
+    public List<JobPlanner> getJobPlanner() {
         return jobPlanner;
     }
 
-    public Employee setJobPlanner(JobPlanner jobPlanner) {
+    public Employee setJobPlanner(List<JobPlanner> jobPlanner) {
         this.jobPlanner = jobPlanner;
         return this;
     }
@@ -108,13 +105,16 @@ public class Employee {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
         return id == employee.id &&
+                phoneNumber == employee.phoneNumber &&
+                Double.compare(employee.salaryPm, salaryPm) == 0 &&
                 Objects.equals(firstName, employee.firstName) &&
-                Objects.equals(lastName, employee.lastName);
+                Objects.equals(lastName, employee.lastName) &&
+                Objects.equals(address, employee.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(id);
     }
 
     @Override
@@ -124,8 +124,10 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
-                ", jobPlanner=" + jobPlanner +
+                ", phoneNumber=" + phoneNumber +
+                ", salaryPm=" + salaryPm +
                 '}';
     }
 }
+
 

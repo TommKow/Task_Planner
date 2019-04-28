@@ -2,6 +2,7 @@ package pl.tp.spring.TaskPlanner.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +17,8 @@ public class Localization {
     @NotNull
     @Column(name = "account")
     private long account;
-    @ManyToOne
-    @JoinColumn(name = "job_planner_id")
-    private JobPlanner jobPlanner;
+    @ManyToMany
+    private List<JobPlanner> jobPlanner;
 
     public Localization() {
     }
@@ -52,15 +52,6 @@ public class Localization {
 
     public Localization setAccount(long account) {
         this.account = account;
-        return this;
-    }
-
-    public JobPlanner getJobPlanner() {
-        return jobPlanner;
-    }
-
-    public Localization setJobPlanner(JobPlanner jobPlanner) {
-        this.jobPlanner = jobPlanner;
         return this;
     }
 
