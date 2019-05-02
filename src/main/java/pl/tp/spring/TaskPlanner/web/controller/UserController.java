@@ -19,7 +19,7 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
@@ -48,7 +48,7 @@ public class UserController {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority authority : authorities) {
             if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                return "redirect:/user/admin/panel";
+                return "redirect:/user/admin";
             }
         }
         return "redirect:/user/panel";
@@ -58,7 +58,7 @@ public class UserController {
         model.addAttribute("user", new User());
         return "userPanel";
     }
-    @GetMapping("/admin/panel")
+    @GetMapping("/admin")
     public String adminPanel() {
         return "adminPanel";
     }

@@ -55,6 +55,15 @@ public class Localization {
         return this;
     }
 
+    public List<JobPlanner> getJobPlanner() {
+        return jobPlanner;
+    }
+
+    public Localization setJobPlanner(List<JobPlanner> jobPlanner) {
+        this.jobPlanner = jobPlanner;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,12 +81,12 @@ public class Localization {
 
     @Override
     public String toString() {
-        return "Localization{" +
+        return "LocalizationRepository{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", account=" + account +
-                ", jobPlanner=" + jobPlanner +
                 '}';
     }
 }
+
 

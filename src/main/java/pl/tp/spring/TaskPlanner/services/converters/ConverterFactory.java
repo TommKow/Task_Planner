@@ -1,12 +1,7 @@
 package pl.tp.spring.TaskPlanner.services.converters;
 
-import pl.tp.spring.TaskPlanner.domain.model.Employee;
-import pl.tp.spring.TaskPlanner.domain.model.Team;
-import pl.tp.spring.TaskPlanner.domain.model.User;
-import pl.tp.spring.TaskPlanner.dto.EmployeeDto;
-import pl.tp.spring.TaskPlanner.dto.RegistrationFormDto;
-import pl.tp.spring.TaskPlanner.dto.TeamDto;
-import pl.tp.spring.TaskPlanner.dto.UserDto;
+import pl.tp.spring.TaskPlanner.domain.model.*;
+import pl.tp.spring.TaskPlanner.dto.*;
 
 public class ConverterFactory {
 
@@ -50,5 +45,27 @@ public class ConverterFactory {
     public static Team convertToTeamDto(Team teamDB, TeamDto teamDto) {
         teamDB.setName(teamDto.getName());
         return teamDB;
+    }
+    public static Job convertJobDto(JobDto jobDto) {
+        Job job = new Job();
+        job.setName(jobDto.getName());
+        job.setAccount(jobDto.getAccount());
+        return job;
+    }
+    public static Job convertToJobDto(Job jobDB, JobDto jobDto) {
+        jobDB.setName(jobDto.getName());
+        jobDB.setAccount(jobDto.getAccount());
+        return jobDB;
+    }
+    public static Localization convertLocalizationDto(LocalizationDto localizationDto) {
+        Localization localization = new Localization();
+        localization.setName(localizationDto.getName());
+        localization.setAccount(localizationDto.getAccount());
+        return localization;
+    }
+    public static Localization convertToLocalizationDto(Localization localizationDB, LocalizationDto localizationDto) {
+        localizationDB.setName(localizationDto.getName());
+        localizationDB.setAccount(localizationDto.getAccount());
+        return localizationDB;
     }
 }
