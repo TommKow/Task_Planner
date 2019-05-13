@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -8,36 +9,38 @@
 
 <html>
 <head>
-    <title>allJob</title>
+    <title>userLocalizationByJob</title>
 </head>
 <body>
+<div class="container">
+    <div class="row" style="">
+        <div class="col-1"></div>
+        <div class="col-10" style=""><h2>LOCALIZATION :  ${localization.name}</h2></div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row" style="">
+        <div class="col-1"></div>
+        <a class="btn btn-primary" href="/user/logged" role="button">User Panel</a>
+        <div class="col-8">
+<table>
 
 
-<a class="btn btn-primary" href="/job/add" role="button">Add Job</a>
-<a class="btn btn-primary" href="/user/admin" role="button">ADMIN Panel</a>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">NAME</th>
-        <th scope="col">ACCOUNT</th>
-    </tr>
-    </thead>
-    <tr>
-        <c:forEach items="${jobs}" var="job">
-    <tr>
+            <tr>
 
-        <th scope="row">${job.id}</th>
-        <td>${job.name}</td>
-        <td>${job.account}</td>
+                <c:forEach items="${localizationByJob}" var="job">
+                    <tr>
+                    <th scope="row">${job.id}</th>
+                    <td>${job.name}</td>
+                </c:forEach><br>
 
-        <td><a class="btn btn-primary" href="/job/edit/${job.id}" role="button">Edit</a></td>
-        <td><a class="btn btn-primary" href="/job/delete/${job.id}" role="button" onclick="if (!(confirm('Czy napewno ?'))) return false" >Delete</a></td>
-    </tr>
-    </c:forEach><br>
+            <h3>Sum of work quantity on localization ${localization.name} = ${localizationByWorkQ} r-g</h3>
 
-
-
+            </tr>
+            </tr>
 </table>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -2,6 +2,7 @@ package pl.tp.spring.TaskPlanner.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,15 +11,15 @@ import java.util.Objects;
 public class Localization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @NotNull
+    private Long id;
+
     @Column(name = "name")
     private String name;
-    @NotNull
-    @Column(name = "account")
-    private long account;
-    @ManyToMany
-    private List<JobPlanner> jobPlanner;
+
+    @Column(name = "account", unique = true)
+    private Long account;
+    @OneToMany(mappedBy = "localizations", cascade = CascadeType.ALL)
+    private List<JobPlanner> jobPlanner = new ArrayList<>();
 
     public Localization() {
     }
@@ -28,11 +29,11 @@ public class Localization {
         this.account = account;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Localization setId(long id) {
+    public Localization setId(Long id) {
         this.id = id;
         return this;
     }
@@ -46,11 +47,11 @@ public class Localization {
         return this;
     }
 
-    public long getAccount() {
+    public Long getAccount() {
         return account;
     }
 
-    public Localization setAccount(long account) {
+    public Localization setAccount(Long account) {
         this.account = account;
         return this;
     }
@@ -81,11 +82,7 @@ public class Localization {
 
     @Override
     public String toString() {
-        return "LocalizationRepository{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", account=" + account +
-                '}';
+        return this.name;
     }
 }
 

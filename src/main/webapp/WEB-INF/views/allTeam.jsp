@@ -14,6 +14,10 @@
 
 
 <a class="btn btn-primary" href="/team/add" role="button">Add Team</a>
+<a class="btn btn-primary" href="/user/admin" role="button">ADMIN Panel</a>
+<c:forEach items="${userLog}" var="user">
+    <p>Zalogowany : ${user.username}</p>
+</c:forEach>
 <table class="table table-striped">
     <thead>
     <tr>

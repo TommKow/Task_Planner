@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 //                .antMatchers("/register").anonymous()
-                .antMatchers("/admin/**", "/employee/**", "/team/**").hasRole("ADMIN")
+                .antMatchers("/admin/**", "/employee/add", "/localization/add", "/job/**", "/team/**").hasRole("ADMIN")
 //                .antMatchers("/anonymous").anonymous()
 //                .antMatchers("/login*").permitAll()
                 .anyRequest().permitAll()

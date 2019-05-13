@@ -1,6 +1,9 @@
 package pl.tp.spring.TaskPlanner.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class UserDto {
+    @NotNull()
     private String username;
     private String firstName;
     private String lastName;

@@ -11,11 +11,21 @@
 </head>
 <body>
 
-<a class="btn btn-primary" href="/user" role="button">User Panel</a>
-<a class="btn btn-primary" href="/employee/all" role="button">Employee Panel</a>
-<a class="btn btn-primary" href="/team/all" role="button">Team Panel</a>
-<a class="btn btn-primary" href="/localization/all" role="button">Localization Panel</a>
-<a class="btn btn-primary" href="/job/all" role="button">Job Panel</a>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">ADMIN PANEL</h4><a class="btn btn-primary" href="/login" role="button">LogOut</a>
+        <p class="card-text"></p>
+        <a class="btn btn-primary btn-block" href="/user" role="button">User Panel</a>
+        <a class="btn btn-primary btn-block" href="/employee/all" role="button">Employee Panel</a>
+        <a class="btn btn-primary btn-block" href="/team/all" role="button">Team Panel</a>
+        <a class="btn btn-primary btn-block" href="/localization/all" role="button">Localization Panel</a>
+        <a class="btn btn-primary btn-block" href="/job/all" role="button">Job Panel</a>
+
+    </div>
+</div>
+    <div class="row">
+
+    </div>
 
 </body>
 </html>

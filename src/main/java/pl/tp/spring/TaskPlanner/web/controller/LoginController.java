@@ -11,6 +11,7 @@ import pl.tp.spring.TaskPlanner.components.LoggedUser;
 import pl.tp.spring.TaskPlanner.dto.UserDto;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/login")
@@ -22,7 +23,8 @@ public class LoginController {
     }
     @GetMapping
     public String loginUser(Model model) {
-        //model.addAttribute("userDto", new UserDto());
+
+        model.addAttribute("userDto", new UserDto());
         return "login";
     }
 }

@@ -2,6 +2,7 @@ package pl.tp.spring.TaskPlanner.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,23 +15,17 @@ public class Job {
     @Column(name = "name")
     private String name;
     @NotNull
-    @Column(name = "account")
+    @Column(name = "account", unique = true)
     private Long account;
-    @Column(name = "work_quantity")
-    private double workQuantity;
-    @ManyToOne
-    @JoinColumn(name = "job_planner_id")
-    private JobPlanner jobPlanner;
-    @ManyToMany
-    private List<Localization> localizations;
+    @OneToMany(mappedBy = "job", cascade = CascadeType.MERGE)
+    private List<JobPlanner> jobPlanner;
 
     public Job() {
     }
 
-    public Job(@NotNull String name, @NotNull Long account, double workQuantity) {
+    public Job(@NotNull String name, @NotNull Long account) {
         this.name = name;
         this.account = account;
-        this.workQuantity = workQuantity;
     }
 
     public long getId() {
@@ -60,30 +55,18 @@ public class Job {
         return this;
     }
 
-    public JobPlanner getJobPlanner() {
+    public List<JobPlanner> getJobPlanner() {
         return jobPlanner;
     }
 
-    public Job setJobPlanner(JobPlanner jobPlanner) {
+    public Job setJobPlanner(List<JobPlanner> jobPlanner) {
         this.jobPlanner = jobPlanner;
         return this;
     }
 
-    public double getWorkQuantity() {
-        return workQuantity;
-    }
 
-    public Job setWorkQuantity(double workQuantity) {
-        this.workQuantity = workQuantity;
-        return this;
-    }
-
-    public List<Localization> getLocalizations() {
-        return localizations;
-    }
-
-    public Job setLocalizations(List<Localization> localizations) {
-        this.localizations = localizations;
-        return this;
+    @Override
+    public String toString() {
+        return this.name + " " + this.account;
     }
 }

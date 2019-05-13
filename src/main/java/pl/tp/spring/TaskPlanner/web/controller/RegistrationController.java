@@ -38,6 +38,6 @@ public class RegistrationController {
             return "registration";
         }
         userService.registerUser(registrationFormDto);
-        return "redirect:/hello.jsp";
+        return "redirect:/login";
     }
 }

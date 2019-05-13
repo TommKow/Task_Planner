@@ -12,38 +12,47 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "job_planner")
+@Table(name = "jobplanner")
 public class JobPlanner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "description")
     private String description;
+    @Column(name = "work_quantity")
+    private Double workQuantity;
     @Column(name = "created")
     private LocalDateTime created = LocalDateTime.now();
     @Column(name = "updated")
     private LocalDateTime updated;
-    @ManyToMany(mappedBy = "jobPlanner", fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(
+            name ="jobplanner_employee",
+            joinColumns = {@JoinColumn(name = "jobplanner_id")},
+            inverseJoinColumns = {@JoinColumn(name = "employee_id")}
+    )
     private List<Employee> employees = new ArrayList<>();
-    @OneToMany(mappedBy = "jobPlanner", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private List<Job> jobs = new ArrayList<>();
-    @ManyToMany(mappedBy = "jobPlanner", fetch = FetchType.LAZY)
-    private List<Localization> localizations = new ArrayList<>();
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Job job;
+    @ManyToOne
+    @JoinColumn(name = "localization_id")
+    private Localization localizations;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
 
     public JobPlanner() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public JobPlanner setId(long id) {
+    public JobPlanner setId(Long id) {
         this.id = id;
         return this;
     }
@@ -84,20 +93,20 @@ public class JobPlanner {
         return this;
     }
 
-    public List<Job> getJobs() {
-        return jobs;
+    public Job getJob() {
+        return job;
     }
 
-    public JobPlanner setJobs(List<Job> jobs) {
-        this.jobs = jobs;
+    public JobPlanner setJob(Job job) {
+        this.job = job;
         return this;
     }
 
-    public List<Localization> getLocalizations() {
+    public Localization getLocalizations() {
         return localizations;
     }
 
-    public JobPlanner setLocalizations(List<Localization> localizations) {
+    public JobPlanner setLocalizations(Localization localizations) {
         this.localizations = localizations;
         return this;
     }
@@ -117,6 +126,15 @@ public class JobPlanner {
 
     public JobPlanner setTeam(Team team) {
         this.team = team;
+        return this;
+    }
+
+    public Double getWorkQuantity() {
+        return workQuantity;
+    }
+
+    public JobPlanner setWorkQuantity(Double workQuantity) {
+        this.workQuantity = workQuantity;
         return this;
     }
 

@@ -7,13 +7,18 @@ import pl.tp.spring.TaskPlanner.repository.LocalizationRepository;
 import pl.tp.spring.TaskPlanner.services.LocalizationService;
 import pl.tp.spring.TaskPlanner.services.converters.ConverterFactory;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Service
 public class LocalizationServiceImpl implements LocalizationService {
     private LocalizationRepository localizationRepository;
 
+
     public LocalizationServiceImpl(LocalizationRepository localizationRepository) {
         this.localizationRepository = localizationRepository;
     }
+
 
     @Override
     public void saveLocalization(LocalizationDto localizationDto) {
@@ -34,4 +39,6 @@ public class LocalizationServiceImpl implements LocalizationService {
         Localization localizationToDelete = ConverterFactory.convertToLocalizationDto(localizationDB, localizationDto);
         localizationRepository.delete(localizationToDelete);
     }
+
+
 }

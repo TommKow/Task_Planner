@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.tp.spring.TaskPlanner.components.LoggedUser;
@@ -29,7 +30,7 @@ public class UserController {
         this.loggedUser = loggedUser;
     }
     @GetMapping
-    public ResponseEntity<String> currentUser() {
+    public ResponseEntity<String> currentUser(Model model) {
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) {
@@ -38,12 +39,13 @@ public class UserController {
         }
         else {
             User user = (User) authentication.getPrincipal();
+            model.addAttribute("currentUser", user);
             return ResponseEntity.ok(user.toString());
         }
     }
 
     @GetMapping("/routing")
-    public String afterLoginRouting() {
+    public String afterLoginRouting(@ModelAttribute("userLog")User user) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority authority : authorities) {
@@ -51,15 +53,18 @@ public class UserController {
                 return "redirect:/user/admin";
             }
         }
-        return "redirect:/user/panel";
+        return "redirect:/user/logged";
     }
-    @GetMapping("/panel")
-    public String userPanel(Model model) {
-        model.addAttribute("user", new User());
-        return "userPanel";
-    }
+
     @GetMapping("/admin")
     public String adminPanel() {
         return "adminPanel";
     }
+    @GetMapping("/logged")
+    public String loggedUser(Model model, Principal principal) {
+        String loggedUser = principal.getName();
+        model.addAttribute("loggedUser", loggedUser);
+        return "userPanel";
+    }
+
 }

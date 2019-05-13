@@ -23,7 +23,7 @@ public class Employee {
     @Column(name = "phoneNr")
     private Long phoneNumber;
     private Double salaryPm;
-    @ManyToMany
+    @ManyToMany(mappedBy = "employees")
     private List<JobPlanner> jobPlanner;
 
     public Employee() {
@@ -119,14 +119,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", salaryPm=" + salaryPm +
-                '}';
+        return firstName + " " + lastName;
     }
 }
 

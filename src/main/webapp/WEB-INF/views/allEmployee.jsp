@@ -13,6 +13,7 @@
 <body>
 
 <a class="btn btn-primary" href="/employee/add" role="button">Add Employee</a>
+<a class="btn btn-primary" href="/user/admin" role="button">ADMIN Panel</a>
 <table class="table table-striped">
     <thead>
         <tr>

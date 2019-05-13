@@ -21,23 +21,27 @@
         <div class="col-6">
             <form:form modelAttribute="registrationForm" method="post">
                 <div class="form-group">
-                    <form:errors path="*" cssClass="error"/>
+
                 </div>
                 <div class="form-group">
                     <form:label path="username">Nazwa uzytkownika </form:label>
                     <form:input path="username" required="true" class="form-control"/>
+                    <form:errors path="username" cssClass="error"/>
                 </div>
                 <div class="form-group">
                 <form:label path="password">Hasło</form:label>
                 <form:input path="password" required="true" class="form-control"/>
+                    <form:errors path="password" cssClass="error"/>
                 </div>
                 <div class="form-group">
                 <form:label path="firstName">Imię</form:label>
                 <form:input path="firstName" required="true" class="form-control"/>
+                    <form:errors path="firstName" cssClass="error"/>
                 </div>
                 <div class="form-group">
                 <form:label path="lastName">Nazwisko</form:label>
                 <form:input path="lastName" required="true" class="form-control"/>
+                    <form:errors path="lastName" cssClass="error"/>
                 </div>
 
 
