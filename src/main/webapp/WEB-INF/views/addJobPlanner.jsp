@@ -41,10 +41,18 @@
                 <div class="form-group row">
                     <form:label path="employees" class="col-sm-3 col-form-label">Employees</form:label>
                     <div class="col-sm-6">
-                    <form:select path="employees" cssClass="custom-select" id="inputGroupSelect02">
+                        <script>
+                        $(document).ready(function () {
+                        $('.mdb-select').multiEntry();
+                        });
+                        </script>
+                    <form:select path="employees" cssClass="mdb-select colorful-select dropdown-primary md-form" multiple="multiple">
+
                         <form:option value="-1" label="--Please Select--"/>
                         <form:options items="${employees}" itemValue="id" itemLabel="firstName"/>
+
                     </form:select>
+                        <button class="btn-save btn btn-primary btn-sm">add Employee</button>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -83,5 +91,8 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="app.js"></script>
 </body>
+
 </html>
