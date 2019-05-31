@@ -3,4 +3,4 @@ Aplikacja mająca na celu zarządzanie zadaniami pracowników ekip budowlanych, 
 Podział aplikacji na zlecanie zadań przez inżynierów z konta "USER", oraz CRUD z konta "ADMIN".
 Rejestracja nowych użytkowników jak i logowanie poprzez SpringSecurity.
 
-Technologie: SpringBoot, SpringSecurity, Maven, Tomcat, MySQL, Hibernate.
+Technologie: SpringBoot, SpringSecurity, Maven, Tomcat, MySQL, JPA.
