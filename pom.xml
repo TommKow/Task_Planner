@@ -96,7 +96,7 @@
 				<version>2.0.8</version>
 				<configuration>
 					<processTypes>
-						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* main</web>
+						<web>java $JAVA_OPTS -Dserver.port=$PORT -jar target/TaskPlanner-0.0.1-SNAPSHOT.jar</web>
 					</processTypes>
 				</configuration>
 			</plugin>

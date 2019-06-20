@@ -25,7 +25,7 @@ public class JobPlanner {
     private LocalDateTime created = LocalDateTime.now();
     @Column(name = "updated")
     private LocalDateTime updated;
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name ="jobplanner_employee",
             joinColumns = {@JoinColumn(name = "jobplanner_id")},
@@ -35,13 +35,13 @@ public class JobPlanner {
     @ManyToOne
     @JoinColumn(name = "job_id")
     private Job job;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "localization_id")
     private Localization localizations;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "team_id")
     private Team team;
 

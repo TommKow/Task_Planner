@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row" style="">
         <div class="col-1"></div>
-        <div class="col-10" style=""><h2>LOCALIZATION :  ${localization.name}</h2></div>
+        <%--<div class="col-10" style=""><h2>LOCALIZATION :  ${localization.name}</h2></div>--%>
         <div class="col-1"></div>
     </div>
     <div class="row" style="">

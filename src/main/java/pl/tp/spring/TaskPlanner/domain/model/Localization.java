@@ -18,7 +18,7 @@ public class Localization {
 
     @Column(name = "account", unique = true)
     private Long account;
-    @OneToMany(mappedBy = "localizations", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "localizations", fetch = FetchType.LAZY )
     private List<JobPlanner> jobPlanner = new ArrayList<>();
 
     public Localization() {
@@ -82,7 +82,12 @@ public class Localization {
 
     @Override
     public String toString() {
-        return this.name;
+        return "Localization{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account=" + account +
+                ", jobPlanner=" + jobPlanner +
+                '}';
     }
 }
 

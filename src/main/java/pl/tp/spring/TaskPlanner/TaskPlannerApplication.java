@@ -10,4 +10,5 @@ public class TaskPlannerApplication {
 		SpringApplication.run(TaskPlannerApplication.class, args);
 	}
 
+
 }
