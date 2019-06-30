@@ -1,5 +1,6 @@
 package pl.tp.spring.TaskPlanner.domain.model;
 
+import org.hibernate.annotations.Proxy;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
+@Proxy(lazy = false)
 @Entity
 @Table(name = "employees")
 public class Employee {

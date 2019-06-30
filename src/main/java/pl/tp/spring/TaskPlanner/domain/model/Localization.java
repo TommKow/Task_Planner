@@ -1,11 +1,13 @@
 package pl.tp.spring.TaskPlanner.domain.model;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Proxy(lazy = false)
 @Entity
 @Table(name = "localizations")
 public class Localization {
@@ -18,7 +20,7 @@ public class Localization {
 
     @Column(name = "account", unique = true)
     private Long account;
-    @OneToMany(mappedBy = "localizations", fetch = FetchType.LAZY )
+    @OneToMany(mappedBy = "localizations", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<JobPlanner> jobPlanner = new ArrayList<>();
 
     public Localization() {

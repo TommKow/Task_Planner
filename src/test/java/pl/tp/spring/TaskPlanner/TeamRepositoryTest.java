@@ -22,6 +22,6 @@ public class TeamRepositoryTest {
     @Test
     public void testFindAll() {
         List<Team> teams = teamRepository.findAll();
-        assertEquals(3, teams.size());
+        assertEquals(6, teams.size());
     }
 }

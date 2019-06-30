@@ -1,15 +1,19 @@
 package pl.tp.spring.TaskPlanner.domain.model;
 
 import org.apache.tomcat.util.digester.ArrayStack;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.transaction.Transactional;
+
 
 @Entity
 @Table(name = "jobplanner")
@@ -25,7 +29,7 @@ public class JobPlanner {
     private LocalDateTime created = LocalDateTime.now();
     @Column(name = "updated")
     private LocalDateTime updated;
-    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(
             name ="jobplanner_employee",
             joinColumns = {@JoinColumn(name = "jobplanner_id")},
@@ -35,13 +39,13 @@ public class JobPlanner {
     @ManyToOne
     @JoinColumn(name = "job_id")
     private Job job;
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "localization_id")
     private Localization localizations;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
 

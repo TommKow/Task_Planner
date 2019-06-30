@@ -77,7 +77,8 @@ public class TeamController {
     }
     @GetMapping("/delete/{id}")
     public String deleteTeam(@PathVariable("id")Long id, @ModelAttribute TeamDto teamDto) {
-        teamService.deleteTeam(id, teamDto);
+
+        teamService.deleteTeam(id);
         return "redirect:/team/all";
     }
 }

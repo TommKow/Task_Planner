@@ -8,5 +8,7 @@ public interface TeamService {
 
     void editTeam(Long id, TeamDto teamDto);
 
-    void deleteTeam(Long id, TeamDto teamDto);
+    void deleteTeam(Long id);
+
+
 }

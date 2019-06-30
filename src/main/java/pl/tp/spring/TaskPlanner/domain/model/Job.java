@@ -1,10 +1,12 @@
 package pl.tp.spring.TaskPlanner.domain.model;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
+@Proxy(lazy = false)
 @Entity
 @Table(name = "jobs")
 public class Job {
@@ -17,7 +19,7 @@ public class Job {
     @NotNull
     @Column(name = "account", unique = true)
     private Long account;
-    @OneToMany(mappedBy = "job", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "job", cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<JobPlanner> jobPlanner;
 
     public Job() {

@@ -16,4 +16,9 @@ public class TeamDto {
         this.name = name;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

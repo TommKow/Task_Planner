@@ -1,11 +1,14 @@
 package pl.tp.spring.TaskPlanner.domain.model;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Proxy(lazy = false)
 @Entity
 @Table(name = "teams")
 public class Team {
@@ -16,13 +19,13 @@ public class Team {
     @NotNull
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<JobPlanner> jobPlanners = new ArrayList<>();
+    @OneToMany(mappedBy = "team",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<JobPlanner> jobPlanners;
 
     public Team() {
     }
 
-    public Team(@NotNull String name) {
+    public Team(String name) {
         this.name = name;
     }
 
@@ -39,9 +42,8 @@ public class Team {
         return name;
     }
 
-    public Team setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public List<JobPlanner> getJobPlanners() {
@@ -51,6 +53,10 @@ public class Team {
     public Team setJobPlanners(List<JobPlanner> jobPlanners) {
         this.jobPlanners = jobPlanners;
         return this;
+    }
+    public void removeJobPlanner(JobPlanner jobPlanner) {
+        jobPlanners.remove(jobPlanner);
+        jobPlanner.setId(null);
     }
 
     @Override
