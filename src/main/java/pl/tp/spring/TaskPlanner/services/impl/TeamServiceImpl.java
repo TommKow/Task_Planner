@@ -20,9 +20,10 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void saveTeam(TeamDto teamDto) {
+    public Team saveTeam(TeamDto teamDto) {
         Team teamToSave = ConverterFactory.convertTeamDto(teamDto);
         teamRepository.save(teamToSave);
+        return teamToSave;
     }
 
     @Override

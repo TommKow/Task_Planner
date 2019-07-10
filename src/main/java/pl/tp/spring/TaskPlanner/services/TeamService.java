@@ -1,10 +1,11 @@
 package pl.tp.spring.TaskPlanner.services;
 
+import pl.tp.spring.TaskPlanner.domain.model.Team;
 import pl.tp.spring.TaskPlanner.dto.TeamDto;
 
 public interface TeamService {
 
-    void saveTeam(TeamDto teamDto);
+    Team saveTeam(TeamDto teamDto);
 
     void editTeam(Long id, TeamDto teamDto);
 
