@@ -19,7 +19,7 @@ public class Team {
     @NotNull
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "team",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "team",cascade = CascadeType.ALL)
     private List<JobPlanner> jobPlanners;
 
     public Team() {
