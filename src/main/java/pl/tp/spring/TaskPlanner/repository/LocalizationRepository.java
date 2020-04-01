@@ -15,7 +15,6 @@ import javax.persistence.PersistenceContext;
 
 import java.util.List;
 
-import static javafx.scene.input.KeyCode.T;
 
 public interface LocalizationRepository extends JpaRepository<Localization, Long> {
 
