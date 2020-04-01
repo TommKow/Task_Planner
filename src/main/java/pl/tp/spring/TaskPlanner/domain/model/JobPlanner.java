@@ -17,7 +17,7 @@ import javax.transaction.Transactional;
 
 @Entity
 @Table(name = "jobplanner")
-public class JobPlanner {
+public class    JobPlanner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
